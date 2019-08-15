@@ -31,8 +31,9 @@
         <div class="form-group">
             <label for="age">Select:</label>
             <select id="age" class="form-control">
-                <option>Select A</option>
-                <option>Select B</option>
+            @foreach ($ages as $age)
+                <option>{{ $age->age }}</option>
+            @endforeach
             </select>
         </div>
         <div class="form-group">
