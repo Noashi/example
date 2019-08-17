@@ -13,6 +13,9 @@ class FrontController extends Controller
     }
 
     public function confirm() {
-        return view('front.confirm');
+        // フォームの入力値を取得
+        $inputs = \Request::all();
+
+        return view('front.confirm', compact('inputs'));
     }
 }
