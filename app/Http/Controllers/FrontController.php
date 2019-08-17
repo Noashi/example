@@ -9,6 +9,10 @@ class FrontController extends Controller
 {
     public function index() {
         $ages = DB::table('ages')->get();
-        return view('index', compact('ages'));
+        return view('front.index', compact('ages'));
+    }
+
+    public function confirm() {
+        return view('front.confirm');
     }
 }

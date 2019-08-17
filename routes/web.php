@@ -11,4 +11,5 @@
 |
 */
 
-Route::get('/', 'FrontController@index');
+Route::get('/index', 'FrontController@index')->name('index');
+Route::post('/confirm', 'FrontController@confirm')->name('confirm');
