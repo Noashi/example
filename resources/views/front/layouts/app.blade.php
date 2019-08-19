@@ -12,7 +12,21 @@
 </head>
 <body>
     <div class="container col-7 mt-5 mb-5">
+        @if (session('message'))
+            <div class="alert alert-success">{{ session('message') }}</div>
+        @endif
+        
         @yield('header')
+        
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
 
         @yield('form')
         @csrf
@@ -53,6 +67,7 @@
                 </div>
             </div>
             @yield('button')
+            @yield('hidden')
         </form>
     </div>
 </body>

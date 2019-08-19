@@ -5,16 +5,16 @@
 @endsection
 
 @section('form')
-<form method="post" action="#">
+<form method="post" action="{{ route('store') }}">
 @endsection
 
 @section('form_name')
-    <p>  {{ $fullname = $inputs['fullname'] }}</p>
+    <p>  {{ $fullname = $validated['fullname'] }}</p>
 @endsection
 
 @section('form_gender')
     <p>
-    @if(($gender = $inputs['gender']) == 1) 
+    @if(($gender = $validated['gender']) == 1) 
         {{ '男性' }}
     @elseif ($gender == 2)
         {{ '女性' }}
@@ -23,16 +23,16 @@
 @endsection
 
 @section('form_age')
-    <p>  {{ $age = $inputs['age'] }}</p>
+    <p>  {{ $age_id = $validated['age_id'] }}</p>
 @endsection
 
 @section('form_email')
-    <p>  {{ $email = $inputs['email'] }}</p>
+    <p>  {{ $email = $validated['email'] }}</p>
 @endsection
 
 @section('form_isEmailSent')
     <p>
-    @if (isset($inputs['checked'])) 
+    @if (isset($validated['checked'])) 
         <?php $is_sent_email = 1; ?>
         {{ '送信許可' }}
     @else
@@ -43,7 +43,7 @@
 @endsection
 
 @section('form_feedback')
-    <?php $feedback = $inputs['feedback'] ?>
+    <?php $feedback = $validated['feedback'] ?>
     <!-- 改行を反映 -->
     <p>{!! nl2br(htmlspecialchars($feedback, ENT_QUOTES, 'UTF-8', false), false) !!}</p>   
 @endsection
@@ -51,8 +51,18 @@
 @section('button')
     <div class="btn-toolbar">
         <div class="mx-auto mb-2">
-            <a class="btn btn-primary mr-3" href="javascript: history.back()">再入力</a>
-            <button type="submit" class="btn btn-success">送信</button>
+            <button name="action" type="submit" class="btn btn-primary mr-3" value="back">再入力</button>
+            <button name="action" type="submit" class="btn btn-success" value="submit">送信</button>
         </div>
     </div>
 @endsection
+
+@section('hidden')
+    <input type="hidden" name="fullname" value="{{ $fullname }}">
+    <input type="hidden" name="gender" value="{{ $gender }}">
+    <input type="hidden" name="age_id" value="{{ $age_id }}">
+    <input type="hidden" name="email" value="{{ $email }}">
+    <input type="hidden" name="is_send_email" value="{{ $is_sent_email }}">
+    <input type="hidden" name="feedback" value="{{ $feedback }}">
+@endsection
+    

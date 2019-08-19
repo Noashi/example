@@ -13,3 +13,4 @@
 
 Route::get('/index', 'FrontController@index')->name('index');
 Route::post('/confirm', 'FrontController@confirm')->name('confirm');
+Route::post('/index', 'FrontController@store')->name('store');
