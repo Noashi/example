@@ -28,10 +28,10 @@
 @endsection
 
 @section('form_age')
-    <select name="age_id" class="form-control">
+    <select name="age_sort" class="form-control">
         <option value="">選択してください</option>
     @foreach ($ages as $age)
-        <option name="age_id" value="{{ $age->sort }}" {{ old('age_id') == $age->sort ? 'selected' : ''}}>{{ $age->age }}</option>
+        <option name="age_sort" value="{{ $age->sort }}" {{ old('age_id') == $age->sort ? 'selected' : ''}}>{{ $age->age }}</option>
     @endforeach
     </select>
 @endsection

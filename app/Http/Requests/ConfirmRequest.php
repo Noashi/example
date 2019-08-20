@@ -26,7 +26,7 @@ class ConfirmRequest extends FormRequest
         return [
             'fullname' => 'required|max:200',
             'gender' => 'required|numeric|between:1,2',
-            'age_id' => 'required|numeric|between:1,6',
+            'age_sort' => 'required|numeric|between:1,6',
             'checked' => '',
             'email' => 'required|email',
             'feedback' => 'max:200',

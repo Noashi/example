@@ -23,7 +23,8 @@
 @endsection
 
 @section('form_age')
-    <p>  {{ $age_id = $validated['age_id'] }}</p>
+    <p>  {{ $age->age }}</p>
+    <?php $age_id = $validated['age_sort'] ?>
 @endsection
 
 @section('form_email')

@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Age;
 use App\Answer;
 use App\Http\Requests\ConfirmRequest;
 use App\Http\Requests\StoreRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class FrontController extends Controller
 {
     public function index() {
-        $ages = DB::table('ages')->get();
+        $ages = Age::get();
         return view('front.index', compact('ages'));
     }
 
     public function confirm(ConfirmRequest $request) {
-        
+
         $validated = $request->validated();
-        return view('front.confirm', compact('validated'));
+        $age_sort = $validated['age_sort'];
+        $age = Age::where('sort', $age_sort)->first();
+        return view('front.confirm', compact('validated', 'age'));
     }
 
     public function store(StoreRequest $request) {
