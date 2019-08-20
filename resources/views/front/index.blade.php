@@ -43,7 +43,7 @@
 @section('form_isEmailSent')
     <p class="mb-2">登録したメールアドレスにメールマガジンをお送りしてもよろしいですか？</p>
     <label for="checked">
-        <input name="checked" type="checkbox"　value="1" {{ old('checked') == 'on' ? 'checked' : ''}}>送信を許可します
+        <input name="checked" id="checked" type="checkbox"　value="1" {{ old('checked') == 'on' ? 'checked' : ''}}>送信を許可します
     </label>
 @endsection
 

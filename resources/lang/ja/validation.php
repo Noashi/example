@@ -119,10 +119,11 @@ return [
     'attributes' => [
         'fullname' => '氏名',
         'gender' => '性別',
-        'age_id' => '年齢', 
+        'age_sort' => '年齢', 
         'email' => 'メールアドレス',
         'is_send_email' => 'メール送信可否',
         'feedback' => 'ご意見',
+        'password' => 'パスワード',
     ],
 
 ];
