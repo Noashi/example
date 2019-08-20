@@ -14,3 +14,6 @@
 Route::get('/index', 'FrontController@index')->name('index');
 Route::post('/confirm', 'FrontController@confirm')->name('confirm');
 Route::post('/index', 'FrontController@store')->name('store');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
