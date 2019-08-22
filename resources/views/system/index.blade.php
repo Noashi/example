@@ -166,7 +166,7 @@
                                     {{ $age->age }}
                                 @endif
                             @endforeach</td>
-                            <td> {{ mb_strimwidth($answer->feedback, 0, 15) }}</td>
+                            <td> {{ mb_strimwidth($answer->feedback, 0, 31, '…') }}</td>
                             <td class="text-right">
                                 <a class="btn btn-xs btn-info" href="{{ route('show', ['id' => $answer->id]) }}"><i class="glyphicon glyphicon-eye-open"></i>詳細</a>
                             </td>
