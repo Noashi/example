@@ -11,7 +11,7 @@
     <script src="/js/app.js" defer></script>
 </head>
 <body>
-    <div class="container col-7 mt-5 mb-5">
+    <div class="container py-5">
         @if (session('message'))
             <div class="alert alert-success">{{ session('message') }}</div>
         @endif
