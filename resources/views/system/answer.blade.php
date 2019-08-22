@@ -60,9 +60,9 @@
                 <div class="col-sm-9">
                     <p>
                     @if ($answer->is_sent_email == 1)
-                        {{ '送信許可' }}
+                        {{ '〇' }}
                     @elseif ($answer->is_sent_email == 0)
-                        {{ '送信不可' }}
+                        {{ '×' }}
                     @endif
                     </p>
                 </div>

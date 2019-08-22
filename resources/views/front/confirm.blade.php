@@ -35,10 +35,10 @@
     <p>
     @if (isset($validated['is_sent_email'])) 
         <?php $is_sent_email = 1; ?>
-        {{ '送信許可' }}
+        {{ '〇' }}
     @else
         <?php $is_sent_email = 0; ?>
-        {{ '送信不可' }}
+        {{ '×' }}
     @endif
     </p>
 @endsection
