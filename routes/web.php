@@ -11,9 +11,16 @@
 |
 */
 
-Route::get('/index', 'FrontController@index')->name('index');
+Route::get('/', 'FrontController@index')->name('index');
+Route::post('/', 'FrontController@store')->name('store');
 Route::post('/confirm', 'FrontController@confirm')->name('confirm');
-Route::post('/index', 'FrontController@store')->name('store');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+// 管理者以上（管理者＆システム管理者）に許可
+Route::group(['middleware' => ['auth', 'can:admin-only']], function () {
+    Route::get('/system/answer/index', 'AnswerController@index')->name('home');
+    Route::get('/system/answer/{id}', 'AnswerController@show')->name('show');
+});
+
+// Route::get('/home', 'HomeController@index')->name('home');
