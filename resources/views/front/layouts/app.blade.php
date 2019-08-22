@@ -69,6 +69,9 @@
             @yield('button')
             @yield('hidden')
         </form>
+        <div class="col-sm-12 text-center mt-5">
+            <a href="{{ route('home')}}">管理用ページ</a>
+        </div>
     </div>
 </body>
 </html>
