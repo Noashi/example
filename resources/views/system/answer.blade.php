@@ -82,7 +82,7 @@
             </div>
             <div class="btn-toolbar">
                 <div class="mx-auto mb-2">
-                    <a class="btn btn-success" href="{{ route('home') }}">一覧へ戻る</a>
+                    <a class="btn btn-success" href="#" onclick="window.history.back(); return false;">一覧へ戻る</a>
                     <button name="action" type="submit" class="btn btn-danger" value="">削除</button>
                 </div>
             </div>
