@@ -29,7 +29,7 @@ class StoreRequest extends FormRequest
             'fullname' => 'required|max:200',
             'gender' => 'required|numeric|between:1,2',
             'age_id' => 'required|numeric|between:1,6',
-            'is_send_email' => 'required|numeric|between:0,1',
+            'is_sent_email' => 'required|numeric|between:0,1',
             'email' => 'required|email',
             'feedback' => 'max:200',
         ];

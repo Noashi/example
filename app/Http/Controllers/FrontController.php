@@ -20,7 +20,7 @@ class FrontController extends Controller
         $validated = $request->validated();
         $age_sort = $validated['age_sort'];
         $age = Age::where('sort', $age_sort)->first();
-        return view('front.confirm', compact('validated', 'age'));
+        return view('front.confirm' , compact('validated', 'age'));
     }
 
     public function store(StoreRequest $request) {
@@ -36,6 +36,6 @@ class FrontController extends Controller
         $validated = $request->validated();
         Answer::create($validated);
 
-        return redirect('index')->with('message','アンケートを送信しました。');
+        return redirect(route('index'))->with('message','アンケートを送信しました。');
     }
 }

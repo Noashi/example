@@ -121,7 +121,7 @@ return [
         'gender' => '性別',
         'age_sort' => '年齢', 
         'email' => 'メールアドレス',
-        'is_send_email' => 'メール送信可否',
+        'is_sent_email' => 'メール送信可否',
         'feedback' => 'ご意見',
         'password' => 'パスワード',
     ],

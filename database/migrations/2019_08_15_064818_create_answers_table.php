@@ -19,8 +19,8 @@ class CreateAnswersTable extends Migration
             $table->tinyInteger('gender');
             $table->integer('age_id');
             $table->string('email', 255);
-            $table->boolean('is_send_email');
-            $table->text('feedback');
+            $table->boolean('is_sent_email');
+            $table->text('feedback')->nullable();
             $table->timestamps();
             $table->dateTime('deleted_at')->nullable();
         });

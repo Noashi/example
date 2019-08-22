@@ -33,7 +33,7 @@
 
 @section('form_isEmailSent')
     <p>
-    @if (isset($validated['checked'])) 
+    @if (isset($validated['is_sent_email'])) 
         <?php $is_sent_email = 1; ?>
         {{ '送信許可' }}
     @else
@@ -53,7 +53,7 @@
     <div class="btn-toolbar">
         <div class="mx-auto mb-2">
             <button name="action" type="submit" class="btn btn-primary mr-3" value="back">再入力</button>
-            <button name="action" type="submit" class="btn btn-success" value="submit">送信</button>
+            <button name="action" type="submit" class="btn btn-success">送信</button>
         </div>
     </div>
 @endsection
@@ -63,7 +63,7 @@
     <input type="hidden" name="gender" value="{{ $gender }}">
     <input type="hidden" name="age_id" value="{{ $age_id }}">
     <input type="hidden" name="email" value="{{ $email }}">
-    <input type="hidden" name="is_send_email" value="{{ $is_sent_email }}">
+    <input type="hidden" name="is_sent_email" value="{{ $is_sent_email }}">
     <input type="hidden" name="feedback" value="{{ $feedback }}">
 @endsection
     

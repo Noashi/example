@@ -42,13 +42,13 @@
 
 @section('form_isEmailSent')
     <p class="mb-2">登録したメールアドレスにメールマガジンをお送りしてもよろしいですか？</p>
-    <label for="checked">
-        <input name="checked" id="checked" type="checkbox"　value="1" {{ old('checked') == 'on' ? 'checked' : ''}}>送信を許可します
+    <label for="is_sent_email">
+        <input name="is_sent_email" id="is_sent_email" type="checkbox"　value="1" {{ old('is_sent_email') == 'on' || old('is_sent_email') == '1' ? 'checked' : ''}}>送信を許可します
     </label>
 @endsection
 
 @section('form_feedback')
-    <textarea name="feedback" class="form-control" placeholder="入力してください" rows="5">{{ old('feedback') }}"</textarea>
+    <textarea name="feedback" class="form-control" placeholder="入力してください" rows="5">{{ old('feedback') }}</textarea>
 @endsection
 
 @section('button')
