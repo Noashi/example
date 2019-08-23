@@ -13,7 +13,8 @@
 <body>
     <div class="container py-5">
         <h3 class="text-left mb-3">アンケート管理システム</h3>
-        <form class="ml-5" method="post" action="">
+        <form class="ml-5" method="post" action="{{ route('delete', ['id' => $answer->id]) }}">
+        <input name="_method" type="hidden" value="delete">
         @csrf
             <div class="form-group row">
                 <label class="col-form-label col-sm-3" for="id">ID</label>
@@ -83,7 +84,7 @@
             <div class="btn-toolbar">
                 <div class="mx-auto mb-2">
                     <a class="btn btn-success" href="#" onclick="window.history.back(); return false;">一覧へ戻る</a>
-                    <button name="action" type="submit" class="btn btn-danger" value="">削除</button>
+                    <button name="action" type="submit" class="btn btn-danger" onClick="return confirm('削除します。よろしいですか？')">削除</button>
                 </div>
             </div>
         </form>

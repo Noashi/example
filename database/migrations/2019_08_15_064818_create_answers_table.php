@@ -22,7 +22,7 @@ class CreateAnswersTable extends Migration
             $table->boolean('is_sent_email');
             $table->text('feedback')->nullable();
             $table->timestamps();
-            $table->dateTime('deleted_at')->nullable();
+            $table->softDeletes();
         });
     }
 

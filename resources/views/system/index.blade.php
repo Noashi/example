@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>管理画面</title>
-    <!-- ① CSS を追加 -->
+    <!-- CSS を追加 -->
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/test.css">
-    <!-- ② JavaScript を追加 -->
+    <!-- JavaScript を追加 -->
     <script src="/js/app.js" defer></script>
-    
+    <!-- JQueryを追加 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="container col-10 mt-5 mb-5">
+        @if (session('message'))
+        <div class="alert alert-success">{{ session('message') }}</div>
+        @endif
         <nav class="navbar navbar-expand-md navbar-light pr-0 pl-0">
             <div class="container p-0">
                     <h4 class="mt-2">アンケート管理システム</h4>
@@ -63,19 +67,19 @@
             </div>
         </nav>
         <div class="border p-5">
-            <form  method="post" action="#">
+            <form  method="get" action="{{ route('search') }}" accept-charset="utf-8">
                 @csrf
                 <div class="row">
                     <div class="form-group row col-sm-4">
-                        <label for="search_name" class="col-sm-4">氏名</label>
-                        <input type="text" class="form-control col-sm-8" name="search_name" id="search_name" placeholder="入力してください">
+                        <label for="s_fullname" class="col-sm-2">氏名</label>
+                        <input type="text" class="form-control col-sm-8" name="s_fullname" id="s_fullname" placeholder="入力してください">
                     </div>
                     <div class="form-group row col-sm-4">
-                        <label for="search_age" class="col-sm-4">年代</label>
-                        <select type="" class="form-control col-sm-8" name="search_age" id="search_age">
+                        <label for="s_age" class="col-sm-2">年代</label>
+                        <select type="" class="form-control col-sm-8" name="s_age" id="s_age">
                             <option value="0">全て</option>
                         @foreach ($ages as $age)
-                            <option name="search_age" value="{{ $age->sort }}" {{ old('age_id') == $age->sort ? 'selected' : ''}}>{{ $age->age }}</option>
+                            <option name="s_age" value="{{ $age->sort }}" {{ old('age_id') == $age->sort ? 'selected' : ''}}>{{ $age->age }}</option>
                         @endforeach
                         </select>
                     </div>
@@ -84,41 +88,43 @@
                             <span>性別</span>
                         </div>
                         <div class="row col-sm-8">
-                            <div class="form-check form-check-inline col-sm-4">
-                                <input class="form-check-input" name="search_gender" id="all" type="radio" value="0" {{ old('gender') == '0' ? 'checked' : '' }}>
-                                <label class="form-check-label" for="all" >全て</label>
-                            </div>
-                            <div class="form-check form-check-inline col-sm-4">
-                                <input class="form-check-input" name="search_gender" id="man" type="radio" value="1" {{ old('gender') == '1' ? 'checked' : '' }}>
-                                <label class="form-check-label" for="man" >男性</label>
-                            </div>
-                            <div class="form-check form-check-inline col-sm-4">
-                                <input class="form-check-input" name="search_gender" id="woman" type="radio" value="2" {{ old('gender') == '2' ? 'checked' : '' }}>
-                                <label class="form-check-label" for="woman">女性</label>
-                            </div>
+                                <label class="form-check-label checkbox-inline" for="all"><input class="form-check-input" name="s_gender" id="both" type="radio" value="0" {{ old('gender') == '0' ? 'checked' : '' }}>全て</label>
+                                <label class="form-check-label checkbox-inline" for="man"><input class="form-check-input" name="s_gender" id="man" type="radio" value="1" {{ old('gender') == '1' ? 'checked' : '' }}>男性</label>
+                                <label class="form-check-label checkbox-inline" for="woman"><input class="form-check-input" name="s_gender" id="woman" type="radio" value="2" {{ old('gender') == '2' ? 'checked' : '' }}> 女性</label>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group row col-sm-8">
-                        <label>登録日</label>
+                        <div class="form-group col-sm-2">
+                            <label>登録日</label>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <input class="form-control" name="s_date_from" id="s_date_from" type="date">
+                        </div>
+                        <div class="auto">
+                            <span>　～　</span>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <input class="form-control" name="s_date_from" id="s_date_from" type="date">
+                        </div>
                     </div>
                     <div class="form-group row col-sm-4">
-                    <span class="col-sm-3">メール送信許可</span>
-                    <label for="search_checked" class="col-sm-9">
-                        <input name="search_checked" id="search_checked" type="checkbox"　value="1" {{ old('checked') == 'on' ? 'checked' : ''}}>許可のみ
-                    </label>
+                        <span class="col-sm-3">メール送信許可</span>
+                        <label for="s_is_sent_email" class="col-sm-9">
+                            <input name="s_is_sent_email" id="s_is_sent_email" type="checkbox"　value="1">許可のみ
+                        </label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group row col-sm-4">
                         <label class="col-sm-4">検索</label>
-                        <input type="text" class="form-control col-sm-8" name="search_keyword" id="search_keyword" placeholder="キーワードを入力">
+                        <input type="text" class="form-control col-sm-8" name="s_keyword" id="s_keyword" placeholder="キーワードを入力">
                     </div>
                 </div>
                 <div class="btn-toolbar">
                     <div class="mx-auto mb-2">
-                        <button name="action" type="submit" class="btn btn-primary" value="reset">リセット</button>
+                        <button type="reset" class="btn btn-primary mr-3">リセット</button>
                         <button name="action" type="submit" class="btn btn-success" value="submit">検索</button>
                     </div>
                 </div>
@@ -130,8 +136,8 @@
                     <button class="btn btn-danger w-50">アンケートを削除</button>
                 </form>
                 <div class="ml-auto col-md-4 row">
-                    <div class="col-md-6 mt-2">全{{ $answers->total() }}件中 {{ ($answers->currentPage() * 10) - 9 }}～{{ ($answers->currentPage() * 10) - 10 + ($answers->count()) }}件表示</div>
-                    <div class="col-md-6">{!! $answers->render() !!}</div>
+                    <div class="col-auto mt-2">全{{ $answers->total() }}件中 {{ ($answers->currentPage() * 10) - 9 }}～{{ ($answers->currentPage() * 10) - 10 + ($answers->count()) }}件表示</div>
+                    <div class="col-md-6 pull-right">{!! $answers->render() !!}</div>
                 </div>
             </div>
         </div>
@@ -141,7 +147,7 @@
             <table class="table table-condensed table-striped">
                 <thead>
                     <tr>
-                        <th><input type="checkbox"></th>
+                        <th><label ><input id="checkAll" type="checkbox" value="">全選択</label></th>
                         <th>ID</th>
                         <th>氏名</th>
                         <th>性別</th>
@@ -153,7 +159,7 @@
                 <tbody>
                     @foreach($answers as $answer)
                         <tr>
-                            <td><input type="checkbox"></td>
+                            <td><input name="answer[]" type="checkbox" value="{{ $answer->id }}"></td>
                             <td><span class="badge">{{ $answer->id }}</span></td>
                             <td>{{ $answer->fullname }}</td>
                             <td>@if($answer->gender == 1) 
@@ -179,5 +185,27 @@
         @endif
         @endif
     </div>
+    <script language="JavaScript" type="text/javascript">
+    $(function(){
+
+    var checkAll = '#checkAll'; //「すべて」のチェックボックスのidを指定
+    var checkBox = 'input[name="answer[]"]'; //チェックボックスのnameを指定
+
+    $( checkAll ).on('click', function() {
+        $( checkBox ).prop('checked', $(this).is(':checked') );
+    });
+
+    $( checkBox ).on( 'click', function() {
+        var boxCount = $( checkBox ).length; //全チェックボックスの数を取得
+        var checked  = $( checkBox + ':checked' ).length; //チェックされているチェックボックスの数を取得
+        if( checked === boxCount ) {
+        $( checkAll ).prop( 'checked', true );
+        } else {
+        $( checkAll ).prop( 'checked', false );
+        }
+    });
+
+    });
+    </script>
 </body>
 </html>

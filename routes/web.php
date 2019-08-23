@@ -11,16 +11,18 @@
 |
 */
 
+// ご意見フォーム
 Route::get('/', 'FrontController@index')->name('index');
 Route::post('/', 'FrontController@store')->name('store');
 Route::post('/confirm', 'FrontController@confirm')->name('confirm');
 Auth::routes();
 
-
-// 管理者以上（管理者＆システム管理者）に許可
+// 管理者に許可
 Route::group(['middleware' => ['auth', 'can:admin-only']], function () {
     Route::get('/system/answer/index', 'AnswerController@index')->name('home');
     Route::get('/system/answer/{id}', 'AnswerController@show')->name('show');
+    Route::get('/system/answer/index/search', 'AnswerController@search')->name('search');
+    Route::delete('/system/answer/index/{id}', 'AnswerController@destroy')->name('delete');
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');
