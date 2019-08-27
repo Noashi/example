@@ -124,7 +124,7 @@
                 </div>
                 <div class="btn-toolbar">
                     <div class="mx-auto mb-2">
-                        <button name="action" type="reset" class="btn btn-primary mr-3 clear-button" value="clear">リセット</button>
+                        <button name="action" type="reset" class="btn btn-primary mr-3 clearForm" value="clear">リセット</button>
                         <button name="action" type="submit" class="btn btn-success" value="submit">検索</button>
                     </div>
                 </div>
@@ -190,12 +190,12 @@
             @endif
             @endif
     </div>
-    <script language="JavaScript" type="text/javascript">
+    <script>
         $(function(){
 
             var checkAll = '#checkAll'; //「すべて」のチェックボックスのidを指定
             var checkBox = 'input[name="answer[]"]'; //チェックボックスのnameを指定
-
+            var clearFrom = '.clearForm';
             $( checkAll ).on('click', function() {
                 $( checkBox ).prop('checked', $(this).is(':checked') );
             });
@@ -210,6 +210,9 @@
                 }
             });
 
+            $( clearFrom ).bind("click", function(){
+                $(this.form).find("textarea, :text, select").val("").end().find(":checked").prop("checked", false);
+            });
         });
     </script>
 </body>
