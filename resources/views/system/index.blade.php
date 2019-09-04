@@ -7,7 +7,6 @@
     <title>管理画面</title>
     <!-- CSS を追加 -->
     <link rel="stylesheet" href="/css/app.css">
-    <link rel="stylesheet" href="/css/test.css">
     <!-- JavaScript を追加 -->
     <script src="/js/app.js" defer></script>
     <!-- JQueryを追加 -->
